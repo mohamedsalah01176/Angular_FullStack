@@ -1,0 +1,20 @@
+
+<div class="flex flex-col md:flex-row my-14 gap-y-3 -z-10">
+  <div class="basis-[80%]  overflow-hidden">
+    <owl-carousel-o class="w-full -z-10" [options]="customOptions">
+          <ng-template carouselSlide>
+            <img loading="lazy" class="h-[400px] w-full " src="/images/slider-image-1.jpeg" alt="image">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img loading="lazy" class="h-[400px] w-full " src="/images/slider-image-2.jpeg" alt="image">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img loading="lazy" class="h-[400px] w-full " src="/images/slider-image-3.jpeg" alt="image">
+          </ng-template>
+        </owl-carousel-o>
+  </div>
+  <div class="flex flex-row md:flex-col basis-[20%]">
+    <img loading="lazy" class="h-[200px] w-1/2 md:w-full" src="/images/slider-image-1.jpeg" alt="image">
+    <img loading="lazy" class="h-[200px] w-1/2 md:w-full" src="/images/slider-image-2.jpeg" alt="image">
+  </div>
+</div>

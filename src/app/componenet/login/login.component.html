@@ -1,0 +1,41 @@
+<section class="min-h-[60vh] flex justify-center">
+  <form  (ngSubmit)="submitLogin()" [formGroup]="loginForm" method="post"  class="w-9/12 m-auto flex flex-col ">
+    <h2 class="text-3xl mb-4">Login Now</h2>
+    @if(errMessage){
+      <p class="bg-red-400 border-2 border-red-800 text-white p-2 rounded-lg mt-0.5">{{errMessage}}</p>
+    }
+    <div class="mb-3">
+      <label class="block text-lg mb-1">Email</label>
+      <input formControlName="email" [ngClass]="{' border-red-800 shadow-md shadow-red-600':loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) }" class=" outline-none block w-full  border-2 border-green-600 rounded-xl py-2 px-4 placeholder:text-gray-400" type="email" name="email" placeholder="example@example.com" >
+      @if(loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)){
+        @if(loginForm.get('email')?.getError('required')){
+          <p class="bg-red-400 border-2 border-red-800 text-white p-2 rounded-lg mt-0.5">The Email is required</p>
+        }
+        @if(loginForm.get('email')?.getError('email')){
+          <p class="bg-red-400 border-2 border-red-800 text-white p-2 rounded-lg mt-0.5">The Email is not Valid</p>
+        }
+      }
+    </div>
+    <div class="mb-3">
+      <label class=" block text-lg mb-1">Password</label>
+      <input formControlName="password" [ngClass]="{' border-red-800 shadow-md shadow-red-600':loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty) }" class="outline-none block w-full border-2 border-green-600 rounded-xl py-2 px-4 placeholder:text-gray-400" type="password" name="password" placeholder="************">
+      @if(loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)){
+        @if(loginForm.get('password')?.getError('required')){
+          <p class="bg-red-400 border-2 border-red-800 text-white p-2 rounded-lg mt-0.5">The Password is required</p>
+        }
+        @if(loginForm.get('password')?.getError('pattern')){
+          <p class="bg-red-400 border-2 border-red-800 text-white p-2 rounded-lg mt-0.5">
+            The Password must contaion 8 charters, at least one big char and small char
+          </p>
+        }
+      }
+    </div>
+    <a routerLink="/forgetPassowrd" class="text-gray-700 underline">forget password</a>
+    <button [ngClass]="{'bg-black cursor-not-allowed':isloading ||loginForm.invalid ,'bg-green-400  hover:bg-green-600 cursor-pointer': loginForm.valid }" class="w-[100px] rounded-xl ml-auto p-2 text-white mt-4 transition-all duration-300" type="submit">
+      Login
+      @if(isloading){
+        <i class="fas fa-spin fa-spinner"></i>
+      }
+    </button>
+  </form>
+</section>
