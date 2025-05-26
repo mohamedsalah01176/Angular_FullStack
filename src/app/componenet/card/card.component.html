@@ -1,0 +1,28 @@
+  <div class="overflow-hidden transition-all duration-300 hover:scale-105  group" >
+    <div class="cursor-pointer h-[250px]" [routerLink]="['/product',product._id]">
+      <img loading="lazy" class="w-full h-full" [src]="product.imageCover" [alt]="product.title" title="image">
+    </div>
+    <div>
+      <p class="text-green-700">{{product.category.name | uppercase}}</p>
+      <!-- <h2 class="text-lg mb-0.5">{{product.title.split(" ",2).join(" ")}}</h2> -->
+      <h2 class="text-lg mb-0.5">{{product.title | splitTxt :2}}</h2>
+      <div class="flex justify-between items-center">
+        <div>
+          <span class="mr-0.5 ">{{product.price | currency:'EG'}}</span>
+          <!-- <span>EGP</span> -->
+        </div>
+        <div>
+          @for (item of getArrFromStars(product.ratingsAverage ); track $index) {
+            <i class="fa-solid fa-star text-yellow-500"></i>
+          }
+          <!-- @for (product of getArrFromStars(5-product.ratingsAverage); track $index) {
+            <i class="fa-solid fa-star text-gray-600"></i>
+          } -->
+          @if(product.ratingsAverage % 1 !==0){
+            <i class="fa-solid fa-star-half-stroke text-yellow-500"></i>
+          }
+        </div>
+      </div>
+      <button (click)="addCartFun(product._id)" class="bg-green-700 text-white p-2 rounded-lg w-[150px] block m-auto mt-3 translate-y-10 cursor-pointer transition-all duration-500 group-hover:translate-y-0 ">Add Cart</button>
+    </div>
+  </div>

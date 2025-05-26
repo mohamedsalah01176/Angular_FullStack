@@ -1,0 +1,80 @@
+<section class="min-h-[60vh] flex justify-center">
+  <form (ngSubmit)="submit()" [formGroup]="registerForm" method="post"  class="w-9/12 m-auto flex flex-col">
+    <h2 class="text-3xl mb-4">Register Now</h2>
+    @if(messageErr){
+      <p class="bg-red-400 border-2 border-red-800 rounded-lg text-center p-2 text-white">{{messageErr}}</p>
+    }
+    <div class="mb-3">
+      <label class="text-lg mb-1 block">Name</label>
+      <input [ngClass]="{' border-red-800 shadow-md shadow-red-600 ':registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty) }" formControlName="name" class=" outline-none  block w-full border-2 border-green-600  rounded-xl py-2 px-4 placeholder:text-gray-400" type="text"  placeholder="your Name" >
+      @if(registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)){
+        @if(registerForm.get('name')?.getError('required') ){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            Name is Required
+          </p>
+        }
+        @else if (registerForm.get('name')?.getError('minlength') ){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The minmum Length is 3
+          </p>
+        }
+        @else if (registerForm.get('name')?.getError('maxlength') ){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The maxmum Length is 20
+          </p>
+        }
+      }
+    </div>
+    <div class="mb-3">
+      <label class="text-lg mb-1">Email</label>
+      <input formControlName="email" [ngClass]="{' border-red-800 shadow-md shadow-red-600 ':registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty) }"  class="outline-none  block w-full  border-2 border-green-600 rounded-xl py-2 px-4 placeholder:text-gray-400" type="email"  placeholder="example@example.com" >
+      @if(registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)){
+        @if(registerForm.get('email')?.getError('required')){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The Email is required
+          </p>
+        }@else if (registerForm.get('email')?.getError('email')) {
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The Email is Not Valid
+          </p>
+        }
+      }
+    </div>
+    <div class="mb-3">
+      <label class="text-lg mb-1">Password</label>
+      <input formControlName="password" [ngClass]="{' border-red-800 shadow-md shadow-red-600 ':registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty) }" class=" outline-none  block w-full  border-2 border-green-600 rounded-xl py-2 px-4 placeholder:text-gray-400" type="password"  placeholder="************" >
+      @if(registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)){
+        @if(registerForm.get('password')?.getError('required')){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The Password is required
+          </p>
+        }@else if (registerForm.get('password')?.getError('pattern')) {
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The Password must contaion 8 charters, at least one big char and small char
+          </p>
+        }
+      }
+    </div>
+    <div class="mb-3">
+      <label class="text-lg mb-1">Phone</label>
+      <input formControlName="phone" [ngClass]="{' border-red-800 shadow-md shadow-red-600 ':registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty) }" class="outline-none  block w-full  border-2 border-green-600 rounded-xl py-2 px-4 placeholder:text-gray-400" type="text"  placeholder="01******" >
+      @if(registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty)){
+        @if(registerForm.get('phone')?.getError('required')){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-0.5 p-2">
+            The Phone is required
+          </p>
+        }@else if(registerForm.get('phone')?.getError('pattern')){
+          <p class="bg-red-400 border-2 border-red-800 text-white rounded-lg mt-1 p-2">
+            The Phone Not Valid
+          </p>
+        }
+      }
+    </div>
+    <button   class="w-[100px] rounded-xl ml-auto  p-2 text-white mt-4 bg-green-400  hover:bg-green-600 cursor-pointer transition-all duration-300  " type="submit">
+      Register
+      @if(isloading){
+        <i class="fas fa-spin fa-spinner"></i>
+      }
+    </button>
+  </form>
+</section>

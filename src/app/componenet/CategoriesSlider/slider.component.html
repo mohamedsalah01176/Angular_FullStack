@@ -1,0 +1,12 @@
+<owl-carousel-o [options]="customOptions">
+  @for(item of categoriesList; track item._id){
+    <ng-template carouselSlide>
+      <div>
+        <a [routerLink]="['/category',item._id]">
+          <img loading="lazy" class="h-[200px]" [src]="item.image" [alt]="item.name" title="image">
+        </a>
+        <h3 class="mt-1">{{item.name}}</h3>
+      </div>
+    </ng-template>
+  }
+</owl-carousel-o>

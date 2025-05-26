@@ -1,0 +1,27 @@
+<section class="flex items-center gap-2 justify-center" >
+  @if(product){
+    <div class="w-[270px]">
+      <img class="w-full" [src]="product.imageCover" [alt]="product.title" title="image">
+    </div>
+    <div>
+      <h1 class="text-4xl text-green-600 mb-6 text-center">{{product.title}}</h1>
+      <p class="text-lg">{{product.description}}</p>
+      <h2 class="my-2">{{product.category.name}}</h2>
+      <div class="flex items-center justify-between">
+        <p><span class="text-lg">{{product.price}}</span> EGP</p>
+        <div>
+          @for (item of getArrFromStars(product.ratingsAverage ); track $index) {
+            <i class="fa-solid fa-star text-yellow-500"></i>
+          }
+          @if(product.ratingsAverage % 1 !==0){
+            <i class="fa-solid fa-star-half-stroke text-yellow-500"></i>
+          }
+        </div>
+      </div>
+      <button class="bg-green-600 p-2 text-white rounded-lg w-[90%] m-auto block mt-7 border-2 border-green-600 transition-all duration-300 hover:bg-white hover:text-green-600 cursor-pointer">Add To Cart</button>
+    </div>
+  }
+  @else {
+    <p>Not Found Product</p>
+  }
+</section>

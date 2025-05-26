@@ -1,0 +1,38 @@
+<section class="fixed  z-30 gap-6 backdrop-blur-xl top-0 left-0 w-full   px-4 md:px-8 py-6 flex  flex-wrap justify-between items-center">
+  <div class="flex gap-4 flex-wrap justify-center md:gap-8 items-center">
+    <div class="cursor-pointer text-4xl font-semibold text-green-600 hover:scale-110 transition-all duration-300 ">MS</div>
+    <ul class="flex  md:gap-4 items-center">
+      <li >
+        <a routerLink="home" routerLinkActive="bg-green-600 text-white rounded-lg " class=" block md:text-lg text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-300 hover:rounded-lg p-2 ">{{'navbar.home'| translate}}</a>
+      </li>
+      <li >
+        <a routerLink="products" routerLinkActive="bg-green-600 text-white rounded-lg " class=" block md:text-lg text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-300 hover:rounded-lg p-2 " >{{'navbar.products'| translate}}</a>
+      </li>
+      <li >
+        <a routerLink="category" routerLinkActive="bg-green-600 text-white rounded-lg " class=" block md:text-lg text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-300 hover:rounded-lg p-2 " >{{'navbar.category'| translate}}</a>
+      </li>
+      <li >
+        <a routerLink="allorders" routerLinkActive="bg-green-600 text-white rounded-lg " class=" block md:text-lg text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-300 hover:rounded-lg p-2 " >{{'navbar.orders'| translate}}</a>
+      </li>
+      <li >
+        <a routerLink="brands" routerLinkActive="bg-green-600 text-white rounded-lg " class=" block md:text-lg text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-300 hover:rounded-lg p-2 " >{{'navbar.brands'| translate}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="flex items-center m-auto md:m-0 gap-7">
+    <div>
+      <i class="fa-brands fa-facebook ml-3 text-xl hover:text-green-600 transition-all duration-300 cursor-pointer"></i>
+      <i class="fa-brands fa-linkedin ml-3 text-xl hover:text-green-600 transition-all duration-300 cursor-pointer"></i>
+      <i class="fa-brands fa-twitter ml-3 text-xl hover:text-green-600 transition-all duration-300 cursor-pointer"></i>
+    </div>
+    <div class="flex items-center gap-2">
+      <a routerLink="cart" class="relative">
+        <i class="fa-solid fa-cart-shopping text-xl"></i>
+        <div class="absolute -top-3 -right-2  px-1 pb-6 text-center bg-green-600 w-[20px] h-[20px] rounded-2xl text-white">{{countercart()}}</div>
+      </a>
+      <button class=" text-xl text-gray-600 cursor-pointer" (click)="_AuthService.logout()">Logout</button>
+    </div>
+  </div>
+
+</section>
+<button class="fixed bottom-10 right-10 cursor-pointer border border-green-600 text-white bg-green-600  text-xl   w-[50px] h-[52px] rounded-full transition-all duration-300 hover:bg-white hover:text-green-600 hover:scale-110 z-20" (click)="changeLang(currentlang =='ar'?'en':'ar')" >{{currentlang =='ar'?'en':'ar'}}</button>
